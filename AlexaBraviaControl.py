@@ -123,7 +123,7 @@ def tv_power(state):
 
         print(response.text)
 
-def volume_down(state):
+def volume_down():
     import requests
 
     url = "http://10.0.2.10/sony/IRCC"
@@ -142,7 +142,7 @@ def volume_down(state):
     print(response.text)
 
 
-def volume_up(state):
+def volume_up():
     import requests
 
     url = "http://10.0.2.10/sony/IRCC"
