@@ -105,7 +105,7 @@ class device_handler(debounce_handler):
         self.lastEcho = time.time()
         self.name = name
         self.port = port
-        if action_function:
+        if act_function:
             self.act_function = act_function
         else:
             def noop():
