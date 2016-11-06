@@ -259,6 +259,8 @@ if __name__ == "__main__":
                     time.sleep(0.1)
                 except Exception, e:
                     logging.critical("Critical exception: " + str(e))
+                    import traceback
+                    logging.critical(traceback.format_exc())
                     break
     except filelock.Timeout:
         logging.debug("Lock acquisition timeout. Unable to acquire lock. Exiting")
