@@ -207,6 +207,7 @@ class device_handler(debounce_handler):
 
     def act(self, client_address, state):
         print "State", state, "from client @", client_address
+        logging.debug("Executing function - {}".format(act_function.__name__))
         self.act_function(state)
         return True
 
@@ -230,8 +231,10 @@ if __name__ == "__main__":
     lock = filelock.FileLock(“/var/run/AlexaDeviceControl.lock”)
 
     try:
+        logging.debug("Attempting to acquire lock")
         with lock.acquire(timeout = 10):
             # Startup the fauxmo server
+            logging.info("Success! - Acquired lock")
             fauxmo.DEBUG = True
             p = fauxmo.poller()
             u = fauxmo.upnp_broadcast_responder()
@@ -257,3 +260,5 @@ if __name__ == "__main__":
                 except Exception, e:
                     logging.critical("Critical exception: " + str(e))
                     break
+    except filelock.Timeout:
+        logging.debug("Lock acquisition timeout. Unable to acquire lock. Exiting")
