@@ -119,7 +119,7 @@ TRIGGERS = [("HDMI1", 52000, hdmi1),
 
 device_list = []
 for trigger in TRIGGERS:
-    device_list.append(trigger[0],trigger[1],trigger[2])
+    device_list.append(device_handler(trigger[0],trigger[1],trigger[2]))
 
 if __name__ == "__main__":
     # Startup the fauxmo server
