@@ -29,7 +29,7 @@ SONY_BRAVIA_URL = "http://{}/sony/IRCC".format(sony_bravia_address)
 
 logging.basicConfig(level=logging.DEBUG)
 
-def hdmi1():
+def hdmi1(state):
     import requests
 
     url = SONY_BRAVIA_URL
@@ -47,7 +47,7 @@ def hdmi1():
 
     print(response.text)
 
-def hdmi2():
+def hdmi2(state):
     import requests
 
     url = SONY_BRAVIA_URL
@@ -65,7 +65,7 @@ def hdmi2():
 
     print(response.text)
 
-def hdmi3():
+def hdmi3(state):
     import requests
 
     url = SONY_BRAVIA_URL
@@ -83,7 +83,7 @@ def hdmi3():
 
     print(response.text)
 
-def hdmi4():
+def hdmi4(state):
     import requests
 
     url = SONY_BRAVIA_URL
@@ -123,7 +123,7 @@ def tv_power(state):
 
         print(response.text)
 
-def volume_down():
+def volume_down(state):
     import requests
 
     url = "http://10.0.2.10/sony/IRCC"
@@ -142,7 +142,7 @@ def volume_down():
     print(response.text)
 
 
-def volume_up():
+def volume_up(state):
     import requests
 
     url = "http://10.0.2.10/sony/IRCC"
@@ -171,7 +171,7 @@ def volume(state):
             volume_up()
             time.sleep(volume_increment_delay)
 
-def mute():
+def mute(state):
     import requests
 
     url = "http://10.0.2.10/sony/IRCC"
