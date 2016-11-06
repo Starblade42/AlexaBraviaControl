@@ -228,7 +228,7 @@ for trigger in TRIGGERS:
 if __name__ == "__main__":
     import filelock
 
-    lock = filelock.FileLock("/var/run/AlexaDeviceControl.lock")
+    lock = filelock.FileLock("/tmp/AlexaDeviceControl.lock")
 
     try:
         logging.debug("Attempting to acquire lock")
