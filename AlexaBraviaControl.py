@@ -101,12 +101,25 @@ class device_handler(debounce_handler):
     """Publishes the on/off state requested,
        and the IP address of the Echo making the request.
     """
-    TRIGGERS = {"device": 52000}
+    def __init__(self, name, port, act_function):
+        self.name = name
+        self.port = port
+        self.act_function = act_function
 
     def act(self, client_address, state):
         print "State", state, "from client @", client_address
-        
+        act_function()
         return True
+
+
+TRIGGERS = [("HDMI1", 52000, hdmi1),
+            ("HDMI2", 52001, hdmi2),
+            ("HDMI3", 52002, hdmi3),
+            ("HDMI4", 52003, hdmi4)]
+
+device_list = []
+for trigger in TRIGGERS:
+    device_list.append(trigger[0],trigger[1],trigger[2])
 
 if __name__ == "__main__":
     # Startup the fauxmo server
@@ -117,9 +130,13 @@ if __name__ == "__main__":
     p.add(u)
 
     # Register the device callback as a fauxmo handler
-    d = device_handler()
-    for trig, port in d.TRIGGERS.items():
-        fauxmo.fauxmo(trig, u, p, None, port, d)
+    #d = device_handler()
+    #for trig, info in d.TRIGGERS.items():
+    #    fauxmo.fauxmo(trig, u, p, None, info['port'], d)
+
+    # Register device handlers
+    for device in device_list:
+        fauxmo.fauxmo(device.name, u, p, None, device.port, device)
 
     # Loop and poll for incoming Echo requests
     logging.debug("Entering fauxmo polling loop")
