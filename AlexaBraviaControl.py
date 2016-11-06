@@ -102,9 +102,15 @@ class device_handler(debounce_handler):
        and the IP address of the Echo making the request.
     """
     def __init__(self, name, port, act_function):
+        self.lastEcho = time.time()
         self.name = name
         self.port = port
-        self.act_function = act_function
+        if action_function
+            self.act_function = act_function
+        else:
+            def noop():
+                pass
+            action_function = noop
 
     def act(self, client_address, state):
         print "State", state, "from client @", client_address
