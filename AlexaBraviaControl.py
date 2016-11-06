@@ -207,7 +207,7 @@ class device_handler(debounce_handler):
 
     def act(self, client_address, state):
         print "State", state, "from client @", client_address
-        logging.debug("Executing function - {}".format(act_function.__name__))
+        logging.debug("Executing function - {}".format(self.act_function.__name__))
         self.act_function(state)
         return True
 
