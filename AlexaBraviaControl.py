@@ -102,7 +102,7 @@ def hdmi4(state):
     print(response.text)
 
 def tv_power(state):
-    if not state:
+    if state:
         from wakeonlan import wol
         wol.send_magic_packet(sony_bravia_mac_address)
     else:
@@ -162,13 +162,13 @@ def volume_up():
     
 
 def volume(state):
-    if not state:
+    if state:
         for i in xrange(0,volume_step_size):
-            volume_down()
+            volume_up()
             time.sleep(volume_increment_delay)
     else:
         for i in xrange(0,volume_step_size):
-            volume_up()
+            volume_down()
             time.sleep(volume_increment_delay)
 
 def mute(state):
