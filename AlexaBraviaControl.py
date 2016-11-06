@@ -114,7 +114,7 @@ class device_handler(debounce_handler):
 
     def act(self, client_address, state):
         print "State", state, "from client @", client_address
-        act_function()
+        self.act_function()
         return True
 
 
