@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 """ fauxmo_minimal.py - Fabricate.IO
 
     This is a demo python file showing what can be done with the debounce_handler.
