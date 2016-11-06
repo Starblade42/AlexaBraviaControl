@@ -110,7 +110,7 @@ class device_handler(debounce_handler):
         else:
             def noop():
                 pass
-            action_function = noop
+            self.act_function = noop
 
     def act(self, client_address, state):
         print "State", state, "from client @", client_address
