@@ -95,7 +95,7 @@ def hdmi4():
 
     response = requests.request("POST", url, data=payload, headers=headers)
 
-print(response.text)
+    print(response.text)
 
 class device_handler(debounce_handler):
     """Publishes the on/off state requested,
