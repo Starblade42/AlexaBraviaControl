@@ -19,7 +19,83 @@ import time
 
 from debounce_handler import debounce_handler
 
+sony_bravia_address = "10.0.2.10"
+
+SONY_BRAVIA_URL = "http://{}/sony/IRCC".format(sony_bravia_address)
+
 logging.basicConfig(level=logging.DEBUG)
+
+def hdmi1():
+    import requests
+
+    url = SONY_BRAVIA_URL
+
+    payload = "<?xml version=\"1.0\"?>\n<s:Envelope xmlns:s=\"http://schemas.xmlsoap.org/soap/envelope/\" s:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\">\n    <s:Body>\n        <u:X_SendIRCC xmlns:u=\"urn:schemas-sony-com:service:IRCC:1\">\n            <IRCCCode>AAAAAgAAABoAAABaAw==</IRCCCode>\n        </u:X_SendIRCC>\n    </s:Body>\n</s:Envelope>"
+    headers = {
+        'content-type': "text/xml; charset=UTF-8",
+        'x-auth-psk': "4169",
+        'soapaction': "\"urn:schemas-sony-com:service:IRCC:1#X_SendIRCC\"",
+        'cache-control': "no-cache",
+        'postman-token': "289aa016-d426-b5d4-3a80-75d271eac88f"
+        }
+
+    response = requests.request("POST", url, data=payload, headers=headers)
+
+    print(response.text)
+
+def hdmi2():
+    import requests
+
+    url = SONY_BRAVIA_URL
+
+    payload = "<?xml version=\"1.0\"?>\n<s:Envelope xmlns:s=\"http://schemas.xmlsoap.org/soap/envelope/\" s:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\">\n    <s:Body>\n        <u:X_SendIRCC xmlns:u=\"urn:schemas-sony-com:service:IRCC:1\">\n            <IRCCCode>AAAAAgAAABoAAABbAw==</IRCCCode>\n        </u:X_SendIRCC>\n    </s:Body>\n</s:Envelope>"
+    headers = {
+        'content-type': "text/xml; charset=UTF-8",
+        'x-auth-psk': "4169",
+        'soapaction': "\"urn:schemas-sony-com:service:IRCC:1#X_SendIRCC\"",
+        'cache-control': "no-cache",
+        'postman-token': "69447f6b-4035-1f89-0cfb-6e8a45569966"
+        }
+
+    response = requests.request("POST", url, data=payload, headers=headers)
+
+    print(response.text)
+
+def hdmi3():
+    import requests
+
+    url = SONY_BRAVIA_URL
+
+    payload = "<?xml version=\"1.0\"?>\n<s:Envelope xmlns:s=\"http://schemas.xmlsoap.org/soap/envelope/\" s:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\">\n    <s:Body>\n        <u:X_SendIRCC xmlns:u=\"urn:schemas-sony-com:service:IRCC:1\">\n            <IRCCCode>AAAAAgAAABoAAABcAw==</IRCCCode>\n        </u:X_SendIRCC>\n    </s:Body>\n</s:Envelope>"
+    headers = {
+        'content-type': "text/xml; charset=UTF-8",
+        'x-auth-psk': "4169",
+        'soapaction': "\"urn:schemas-sony-com:service:IRCC:1#X_SendIRCC\"",
+        'cache-control': "no-cache",
+        'postman-token': "bf68721b-1139-f2b0-3ecd-c0d09436eef1"
+        }
+
+    response = requests.request("POST", url, data=payload, headers=headers)
+
+    print(response.text)
+
+def hdmi4():
+    import requests
+
+    url = SONY_BRAVIA_URL
+
+    payload = "<?xml version=\"1.0\"?>\n<s:Envelope xmlns:s=\"http://schemas.xmlsoap.org/soap/envelope/\" s:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\">\n    <s:Body>\n        <u:X_SendIRCC xmlns:u=\"urn:schemas-sony-com:service:IRCC:1\">\n            <IRCCCode>AAAAAgAAABoAAABdAw==</IRCCCode>\n        </u:X_SendIRCC>\n    </s:Body>\n</s:Envelope>"
+    headers = {
+        'content-type': "text/xml; charset=UTF-8",
+        'x-auth-psk': "4169",
+        'soapaction': "\"urn:schemas-sony-com:service:IRCC:1#X_SendIRCC\"",
+        'cache-control': "no-cache",
+        'postman-token': "8582abc4-81bd-16e2-fee1-d58f7b997041"
+        }
+
+    response = requests.request("POST", url, data=payload, headers=headers)
+
+print(response.text)
 
 class device_handler(debounce_handler):
     """Publishes the on/off state requested,
@@ -29,6 +105,7 @@ class device_handler(debounce_handler):
 
     def act(self, client_address, state):
         print "State", state, "from client @", client_address
+        
         return True
 
 if __name__ == "__main__":
