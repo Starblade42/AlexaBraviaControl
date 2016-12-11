@@ -19,7 +19,7 @@ import time
 
 from debounce_handler import debounce_handler
 
-sony_bravia_address = "10.0.2.10"
+sony_bravia_address = "192.168.86.35"
 sony_bravia_mac_address = "B0:10:41:BD:B3:91"
 
 volume_step_size = 10
@@ -108,7 +108,7 @@ def tv_power(state):
     else:
         import requests
 
-        url = "http://10.0.2.10/sony/IRCC"
+        url = SONY_BRAVIA_URL
 
         payload = "<?xml version=\"1.0\"?>\n<s:Envelope xmlns:s=\"http://schemas.xmlsoap.org/soap/envelope/\" s:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\">\n    <s:Body>\n        <u:X_SendIRCC xmlns:u=\"urn:schemas-sony-com:service:IRCC:1\">\n            <IRCCCode>AAAAAQAAAAEAAAAvAw==</IRCCCode>\n        </u:X_SendIRCC>\n    </s:Body>\n</s:Envelope>"
         headers = {
@@ -126,7 +126,7 @@ def tv_power(state):
 def volume_down():
     import requests
 
-    url = "http://10.0.2.10/sony/IRCC"
+    url = SONY_BRAVIA_URL
 
     payload = "<?xml version=\"1.0\"?>\n<s:Envelope xmlns:s=\"http://schemas.xmlsoap.org/soap/envelope/\" s:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\">\n    <s:Body>\n        <u:X_SendIRCC xmlns:u=\"urn:schemas-sony-com:service:IRCC:1\">\n            <IRCCCode>AAAAAQAAAAEAAAATAw==</IRCCCode>\n        </u:X_SendIRCC>\n    </s:Body>\n</s:Envelope>"
     headers = {
@@ -145,7 +145,7 @@ def volume_down():
 def volume_up():
     import requests
 
-    url = "http://10.0.2.10/sony/IRCC"
+    url = SONY_BRAVIA_URL
 
     payload = "<?xml version=\"1.0\"?>\n<s:Envelope xmlns:s=\"http://schemas.xmlsoap.org/soap/envelope/\" s:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\">\n    <s:Body>\n        <u:X_SendIRCC xmlns:u=\"urn:schemas-sony-com:service:IRCC:1\">\n            <IRCCCode>AAAAAQAAAAEAAAASAw==</IRCCCode>\n        </u:X_SendIRCC>\n    </s:Body>\n</s:Envelope>"
     headers = {
@@ -174,7 +174,7 @@ def volume(state):
 def mute(state):
     import requests
 
-    url = "http://10.0.2.10/sony/IRCC"
+    url = SONY_BRAVIA_URL
 
     payload = "<?xml version=\"1.0\"?>\n<s:Envelope xmlns:s=\"http://schemas.xmlsoap.org/soap/envelope/\" s:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\">\n    <s:Body>\n        <u:X_SendIRCC xmlns:u=\"urn:schemas-sony-com:service:IRCC:1\">\n            <IRCCCode>AAAAAQAAAAEAAAAUAw==</IRCCCode>\n        </u:X_SendIRCC>\n    </s:Body>\n</s:Envelope>"
     headers = {
